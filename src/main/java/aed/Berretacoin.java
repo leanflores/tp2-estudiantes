@@ -1,10 +1,35 @@
 package aed;
+import java.util.*;
 
 public class Berretacoin {
+/* 
 
+private Usuarios [] usuarios;
+private Bloque bloque;
+private Transaccion transacciones;
+private int longitud;
+
+*/
+    private Usuarios[] usuarios;
+    private ListaEnlazada bloques;
+    private int maxTenedorId;
+    private int maxTenedorSaldo;
+
+    
     public Berretacoin(int n_usuarios){
-        throw new UnsupportedOperationException("Implementar!");
+        usuarios = new Usuarios[n_usuarios];
+        for (int i = 0; i < n_usuarios; i++) {
+            usuarios[i] = new Usuarios(i + 1);
+        }
+        bloques = new ListaEnlazada();
+        maxTenedorId = 1;
+        maxTenedorSaldo = 0;
+        }
+    /*
+    public int longitud() {
+        return longitud;
     }
+     */
 
     public void agregarBloque(Transaccion[] transacciones){
         throw new UnsupportedOperationException("Implementar!");
@@ -19,7 +44,7 @@ public class Berretacoin {
     }
 
     public int maximoTenedor(){
-        throw new UnsupportedOperationException("Implementar!");
+        return maxTenedorId;
     }
 
     public int montoMedioUltimoBloque(){
@@ -30,3 +55,4 @@ public class Berretacoin {
         throw new UnsupportedOperationException("Implementar!");
     }
 }
+////////////////////////////////////////////////////////////////////////////////////ARCHIVOS SEPARADOS EN CADA UNO ESTA SU PROPIO INICIALIZADOR
