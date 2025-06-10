@@ -1,7 +1,8 @@
 package aed;
 
 public class Usuarios implements Comparable<Usuarios>{ //arreglo ordenado --> se guarda en un heap
-
+    private Heap<Usuario> heapSaldos;
+    private Usuario[] arregloUsuarios;  
     // inicializador/constructor
     int id;
     int saldo;
@@ -14,6 +15,7 @@ public class Usuarios implements Comparable<Usuarios>{ //arreglo ordenado --> se
 
     public int getId() { return id; }
     public int getSaldo() { return saldo; }
+
 
     @Override
     public int compareTo(Usuarios otro) {
@@ -33,4 +35,10 @@ public class Usuarios implements Comparable<Usuarios>{ //arreglo ordenado --> se
         }
         
         */
+
+public class Usuario implements Comparable<Usuarios>{
+    int id;
+    int saldo;
+
+    public Void
 
