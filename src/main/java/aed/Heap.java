@@ -1,6 +1,6 @@
 package aed;
 
-public class Heap implements Comparable<Heap> {
+public class Heap<T extends Comparable<T>> {
 
         private int id;
         private int id_comprador;
