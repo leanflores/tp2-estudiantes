@@ -2,16 +2,24 @@ package aed;
 
 public class Transaccion implements Comparable<Transaccion> {
     private int id;
-    private int id_comprador;
-    private int id_vendedor;
+    private int idComprador;
+    private int idVendedor;
     private int monto;
 
-    public Transaccion(int id, int id_comprador, int id_vendedor, int monto) {
+    public Transaccion(int id, int idComprador, int idVendedor, int monto) {
         this.id = id;
-        this.id_comprador = id_comprador;
-        this.id_vendedor = id_vendedor;
+        this.idComprador = idComprador;
+        this.idVendedor = idVendedor;
         this.monto = monto;
     }
+
+    public int obtenerId() {return id;}
+
+    public int obtenerMonto() {return monto;}
+
+    public int obtenerComprador() {return idComprador;}
+    
+    public int obtenerVendedor() {return idVendedor;}
 
     @Override
     public int compareTo(Transaccion otro) { //qué pide o para qué lo queremos
@@ -44,15 +52,4 @@ public class Transaccion implements Comparable<Transaccion> {
         }
     }
 
-    public int monto() {
-        return monto;
-    }
-
-    public int id_comprador() {
-        return id_comprador;
-    }
-    
-    public int id_vendedor() {
-        return id_vendedor;
-    }
 }

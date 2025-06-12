@@ -2,7 +2,7 @@ package aed;
 
 public class Heap<T extends Comparable<T>> {
 
-        private int id;
+        private Array<T> arr;
         private int id_comprador;
         private int id_vendedor;
         private int monto;
