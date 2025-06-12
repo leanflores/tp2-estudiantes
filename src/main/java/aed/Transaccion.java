@@ -48,7 +48,7 @@ public class Transaccion implements Comparable<Transaccion> {
         }
         else {
             Transaccion otraTransaccion = (Transaccion) otro;
-            return ((id==otraTransaccion.id) && (id_comprador==otraTransaccion.id_comprador) && (id_vendedor==otraTransaccion.id_vendedor)&& (monto==otraTransaccion.monto));
+            return ((id==otraTransaccion.id) && (idComprador==otraTransaccion.idComprador) && (idVendedor==otraTransaccion.idVendedor)&& (monto==otraTransaccion.monto));
         }
     }
 
