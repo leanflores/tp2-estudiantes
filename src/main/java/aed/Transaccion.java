@@ -1,6 +1,6 @@
 package aed;
 
-public class Transaccion implements Comparable<Transaccion> {
+public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
     private int id;
     private int idComprador;
     private int idVendedor;
@@ -12,6 +12,7 @@ public class Transaccion implements Comparable<Transaccion> {
         this.idComprador = idComprador;
         this.idVendedor = idVendedor;
         this.monto = monto;
+        this.handle = id;
     }
 
     public int obtenerId() {return id;}
@@ -21,6 +22,14 @@ public class Transaccion implements Comparable<Transaccion> {
     public int obtenerComprador() {return idComprador;}
     
     public int obtenerVendedor() {return idVendedor;}
+    
+    public int obtenerHandle(){
+        return handle;
+    }
+
+    public void actualizarHandle(int nuevo) {
+        handle = nuevo;
+    }
 
     @Override
     public int compareTo(Transaccion otro) { //qué pide o para qué lo queremos

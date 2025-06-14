@@ -1,6 +1,6 @@
 package aed;
 
-public class Usuario implements Comparable<Usuario>{
+public class Usuario implements Comparable<Usuario>, ManejadorDeHandle{
     int id;
     int saldo;
     int handle;
@@ -23,7 +23,7 @@ public class Usuario implements Comparable<Usuario>{
         return handle;
     }
 
-    public void modificarHandleUsuario(int nuevo){
+    public void modificarHandle(int nuevo) {
         handle = nuevo;
     }
 
