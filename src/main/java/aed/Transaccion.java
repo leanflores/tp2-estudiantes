@@ -5,6 +5,7 @@ public class Transaccion implements Comparable<Transaccion> {
     private int idComprador;
     private int idVendedor;
     private int monto;
+    private int handle;
 
     public Transaccion(int id, int idComprador, int idVendedor, int monto) {
         this.id = id;

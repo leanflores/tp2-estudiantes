@@ -1,41 +1,40 @@
 package aed;
 
-public class Heap<T extends Comparable<T>> {
+import java.util.ArrayList;
+import java.util.Comparator;
 
-        private Array<T> arr;
-        private int id_comprador;
-        private int id_vendedor;
-        private int monto;
+public class Heap<T extends Comparable<T>> {
+        private Array<T> elementos;
+        private int tamaño;
+        private Array<T> handles;
 
         // inicializador/constructor
-
-        public Heap(int id, int id_comprador, int id_vendedor, int monto) {
-
-        this.id = id;
-        this.id_comprador = id_comprador;
-        this.id_vendedor = id_vendedor;
-        this.monto = monto;
+        public Heap (Comparator<T> comparador, ArrayList<T> elementos){
+                this.elementos = elementos;
+                this.tamaño = elementos.tamaño();  
+                if (tamaño != 0){
+                        heapify();  //O(size)
+                }
         }
 
-        @Override
-        public int compareTo(Heap otro) {
-                throw new UnsupportedOperationException("Implementar!");
-        }
-
-        @Override
-        public boolean equals(Object otro){
-                throw new UnsupportedOperationException("Implementar!");
-        }
-
-        public int monto() {
-                return monto;
-        }
-
-        public int id_comprador() {
-                return id_comprador;
+        private void heapify(){ //O(size)
+                int posPadre = elementos.tamaño() - 1;
+                while (posPadre >= 0){  
+                        bajar(posPadre);    
+                        posPadre--;
+                }
         }
         
-        public int id_vendedor() {
-                return id_vendedor;
-    }
+        public void encolar(T elem){
+                elementos.add(elem);
+                tamaño++;
+                int pos = tamaño - 1;
+
+
+        }
+      
+
+        public int tamaño() {
+                return tamaño;
+        }
 }

@@ -3,10 +3,12 @@ package aed;
 public class Usuario implements Comparable<Usuario>{
     int id;
     int saldo;
+    int handle;
 
-    public Usuario (int id, int saldoInicial){
+    public Usuario (int id){
         this.id = id;
-        this.saldo = saldoInicial;
+        this.saldo = 0;
+        this.handle = id;
     }
 
     public int obtenerId(){
@@ -15,6 +17,18 @@ public class Usuario implements Comparable<Usuario>{
 
     public int obtenerSaldo(){
         return saldo;
+    }
+
+    public int obtenerHandle(){
+        return handle;
+    }
+
+    public void modificarHandleUsuario(int nuevo){
+        handle = nuevo;
+    }
+
+    public void modificarSaldo(int movimiento){
+        this.saldo += movimiento;
     }
 
     @Override

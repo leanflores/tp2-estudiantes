@@ -1,29 +1,52 @@
 package aed;
 
-import java.util.List;
 
-public class ListaEnlazada implements Comparable<ListaEnlazada> {
-        // inicializador/constructor
-        private Bloque cabeza;
-        
+public class ListaEnlazada<T> {
+    private static class Nodo<T> {
+        T valor;
+        Nodo<T> siguiente;
 
-        public void agregarBloque(Bloque nuevo) {
-                nuevo.anterior = cabeza;
-                cabeza = nuevo;
+        Nodo(T valor) {
+            this.valor = valor;
+        }
+    }
+
+    private Nodo<T> cabeza;
+    private Nodo<T> cola;
+
+    public void agregar(T valor) {
+        Nodo<T> nuevo = new Nodo<>(valor);
+        if (cabeza == null) {
+            cabeza = cola = nuevo;
+        } else {
+            cola.siguiente = nuevo;
+            cola = nuevo;
+        }
+    }
+
+    public T ultimo() {
+        if (cola != null){
+            return cola.valor; 
+        }
+        else {
+            return null;
+        }
+    }
+
+    public Iterador<T> iterador() {
+    return new Iterador<T>() {
+        private Nodo<T> actual = cabeza;
+
+        public boolean haySiguiente() {
+            return actual != null;
         }
 
-        public Bloque ultimoBloque() {
-                return cabeza;
+        public T siguiente() {
+            T valor = actual.valor;
+            actual = actual.siguiente;
+            return valor;
         }
-
-        @Override
-        public int compareTo(ListaEnlazada otro) {
-                throw new UnsupportedOperationException("Implementar!");
-        }
-
-        @Override
-        public boolean equals(Object otro){
-                throw new UnsupportedOperationException("Implementar!");
-        }
+    };
+    }   
 
 }
