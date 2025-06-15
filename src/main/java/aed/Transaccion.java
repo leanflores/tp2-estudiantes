@@ -12,7 +12,7 @@ public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
         this.idComprador = idComprador;
         this.idVendedor = idVendedor;
         this.monto = monto;
-        this.handle = id;
+        this.handle = -1;
     }
 
     public int obtenerId() {return id;}
@@ -27,26 +27,8 @@ public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
         return handle;
     }
 
-    public void actualizarHandle(int nuevo) {
+    public void modificarHandle(int nuevo) {
         handle = nuevo;
-    }
-
-    @Override
-    public int compareTo(Transaccion otro) { //qué pide o para qué lo queremos
-        int res=0;
-        Transaccion actual;
-        if (actual.compareTo(otro)==-1){
-            res = -1;
-            return res;
-        }
-        else if (actual.compareTo(otro)==1){
-            res = 1;
-            return res;
-        }
-        else {
-            res = 0;
-            return res;
-        }
     }
 
     @Override
@@ -60,6 +42,12 @@ public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
             Transaccion otraTransaccion = (Transaccion) otro;
             return ((id==otraTransaccion.id) && (idComprador==otraTransaccion.idComprador) && (idVendedor==otraTransaccion.idVendedor)&& (monto==otraTransaccion.monto));
         }
+    }
+
+    @Override
+    public int compareTo(Transaccion otro) {
+        // Orden ascendente de monto; para max‑heap podrías invertir los argumentos:
+        return Integer.compare(this.monto, otro.monto);
     }
 
 }

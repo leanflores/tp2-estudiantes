@@ -8,7 +8,7 @@ public class Usuario implements Comparable<Usuario>, ManejadorDeHandle{
     public Usuario (int id){
         this.id = id;
         this.saldo = 0;
-        this.handle = id;
+        this.handle = -1;
     }
 
     public int obtenerId(){
@@ -45,8 +45,11 @@ public class Usuario implements Comparable<Usuario>, ManejadorDeHandle{
     }
 
     @Override
-    public boolean equals(Object otro){
-        throw new UnsupportedOperationException("Implementar!");
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Usuario otro = (Usuario) obj;
+        return this.id == otro.id;
     }
 }
 

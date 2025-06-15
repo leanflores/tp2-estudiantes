@@ -11,6 +11,8 @@ public class Heap<T extends ManejadorDeHandle & Comparable<T>> {
         // inicializador/constructor
         public Heap (Comparator<T> comparador, ArrayList<T> elementos){
                 this.elementos = elementos;
+                this.tamaño = elementos.size();
+                this.comparador = comparador;
                 
                 for (int i = 0; i < elementos.size(); i++) {
                    elementos.get(i).modificarHandle(i);
@@ -97,7 +99,7 @@ public class Heap<T extends ManejadorDeHandle & Comparable<T>> {
         }
 
         private void bajar(int i) {
-                int n = size;
+                int n = tamaño;
                 while (true) {
                 int izq = 2 * i + 1;
                 int der = 2 * i + 2;
@@ -126,5 +128,10 @@ public class Heap<T extends ManejadorDeHandle & Comparable<T>> {
         }
         public int tamaño() {
                 return elementos.size();
+        }
+
+        public T verRaiz(){ 
+                if (tamaño == 0) return null;
+                return elementos.get(0);
         }
 }
