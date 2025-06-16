@@ -2,15 +2,15 @@ package aed;
 
 public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
     private int id;
-    private int idComprador;
-    private int idVendedor;
+    private int id_comprador;
+    private int id_vendedor;
     private int monto;
     private int handle;
 
-    public Transaccion(int id, int idComprador, int idVendedor, int monto) {
+    public Transaccion(int id, int id_comprador, int id_vendedor, int monto) {
         this.id = id;
-        this.idComprador = idComprador;
-        this.idVendedor = idVendedor;
+        this.id_comprador = id_comprador;
+        this.id_vendedor = id_vendedor;
         this.monto = monto;
         this.handle = -1;
     }
@@ -19,9 +19,9 @@ public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
 
     public int monto() {return monto;}
 
-    public int id_comprador() {return idComprador;}
+    public int id_comprador() {return id_comprador;}
     
-    public int id_vendedor() {return idVendedor;}
+    public int id_vendedor() {return id_vendedor;}
     
     public int obtenerHandle(){
         return handle;
@@ -40,7 +40,7 @@ public class Transaccion implements Comparable<Transaccion>, ManejadorDeHandle {
         }
         else {
             Transaccion otraTransaccion = (Transaccion) otro;
-            return ((id==otraTransaccion.id) && (idComprador==otraTransaccion.idComprador) && (idVendedor==otraTransaccion.idVendedor)&& (monto==otraTransaccion.monto));
+            return ((id==otraTransaccion.id) && (id_comprador==otraTransaccion.id_comprador) && (id_vendedor==otraTransaccion.id_vendedor)&& (monto==otraTransaccion.monto));
         }
     }
 
