@@ -1,6 +1,5 @@
 package aed;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Bloque {
@@ -10,8 +9,8 @@ public class Bloque {
 
      // inicializador/constructor
     public Bloque() {
-        this.transacciones = new ArrayList<>();                        // lista vacía para iterar/ordenar
-        this.heapPorValor = new Heap<Transaccion>(Comparator.naturalOrder(), new ArrayList<Transaccion>());
+        this.transacciones = new ArrayList<>();                       
+        this.heapPorValor = new Heap<Transaccion>(new ArrayList<Transaccion>());
         this.sumaMontos = 0;
     }
 
@@ -19,8 +18,8 @@ public class Bloque {
     public void agregarTransaccion(Transaccion tx) {
         transacciones.add(tx);
         heapPorValor.encolar(tx);
-        if (tx.obtenerComprador() != 0 && tx.obtenerVendedor() != 0) {
-            sumaMontos += tx.obtenerMonto();
+        if (tx.id_comprador() != 0 && tx.id_vendedor() != 0) {
+            sumaMontos += tx.monto();
         }
     }
 
@@ -36,8 +35,8 @@ public class Bloque {
     public Transaccion extraerMax() {
         Transaccion tx = heapPorValor.desencolar();
         if (tx != null) {
-            if (tx.obtenerComprador() != 0 && tx.obtenerVendedor() != 0) {
-                sumaMontos -= tx.obtenerMonto();
+            if (tx.id_comprador() != 0 && tx.id_vendedor() != 0) {
+                sumaMontos -= tx.monto();
             }
             transacciones.remove(tx);
         }
@@ -64,7 +63,7 @@ public class Bloque {
     public int cantidadTransaccionesValidas() {
         int count = 0;
         for (Transaccion tx : transacciones) {
-            if (tx.obtenerComprador() != 0 && tx.obtenerVendedor() != 0) {
+            if (tx.id_comprador() != 0 && tx.id_vendedor() != 0) {
                 count++;
             }
         }

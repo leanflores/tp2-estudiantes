@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Berretacoin {
-    private Usuario[] usuarios; // arreglo indexado por id
-    private Heap<Usuario> heapUsuarios; // max heap con handlers para actualizar usuarios
+    private Usuario[] usuarios;
+    private Heap<Usuario> heapUsuarios; 
     private ListaEnlazada<Bloque> cadena;
     //private int maxIdTx;
     private Bloque ultimoBloque;
-    private ComparadorUsuarios comparador;
 
     public Berretacoin(int n_usuarios) {
         this.usuarios = new Usuario[n_usuarios + 1];
@@ -18,9 +17,7 @@ public class Berretacoin {
             usuarios[i] = new Usuario(i);
             listaUsuarios.add(usuarios[i]);
         }
-        // Inicializo el heap con los usuarios y comparador correspondiente
-        comparador = new ComparadorUsuarios();
-        heapUsuarios = new Heap<>(comparador, listaUsuarios); // O(P)
+        heapUsuarios = new Heap<>(listaUsuarios); // O(P)
         this.cadena = new ListaEnlazada<>();
         //this.maxIdTx = n_usuarios;
     }
@@ -30,20 +27,17 @@ public class Berretacoin {
 
         for (int i = 0; i < transacciones.length; i++) {
             Transaccion tx = transacciones[i];
-            int idComprador = tx.obtenerComprador();
-            int idVendedor = tx.obtenerVendedor();
-            int monto = tx.obtenerMonto();
+            int idComprador = tx.id_comprador();
+            int idVendedor = tx.id_vendedor();
+            int monto = tx.monto();
 
             if (idComprador != 0) {
                 usuarios[idComprador].modificarSaldo(-monto);
-                usuarios[idComprador].incrementarTransacciones();
                 heapUsuarios.actualizar(usuarios[idComprador]);
             }
 
-            // El vendedor recibe el dinero (gana saldo)
             if (idVendedor != 0) {
                 usuarios[idVendedor].modificarSaldo(monto);
-                usuarios[idVendedor].incrementarTransacciones();
                 heapUsuarios.actualizar(usuarios[idVendedor]);
             }
 
@@ -87,19 +81,17 @@ public class Berretacoin {
         Transaccion tx = ultimoBloque.extraerMax();
         if (tx == null) return;
 
-        int idComprador = tx.obtenerComprador();
-        int idVendedor = tx.obtenerVendedor();
-        int monto = tx.obtenerMonto();
+        int idComprador = tx.id_comprador();
+        int idVendedor = tx.id_vendedor();
+        int monto = tx.monto();
 
         if (idComprador != 0) {
             usuarios[idComprador].modificarSaldo(monto);
-            usuarios[idComprador].decrementarTransacciones();
             heapUsuarios.actualizar(usuarios[idComprador]);
         }
 
         if (idVendedor != 0) {
-            usuarios[idVendedor].modificarSaldo(--monto);
-            usuarios[idVendedor].decrementarTransacciones();
+            usuarios[idVendedor].modificarSaldo(-monto);
             heapUsuarios.actualizar(usuarios[idVendedor]);
         }
     }

@@ -32,17 +32,17 @@ public class Usuario implements Comparable<Usuario>, ManejadorDeHandle{
     }
 
     @Override
-    public int compareTo(Usuario otro){
-        if(this.saldo > otro.saldo){
-            return 1;
-        }
-        else if(this.saldo < otro.saldo){
-            return -1;
-        }
-        else{
-            return 0;
-        }
+public int compareTo(Usuario otro) {
+    if (this.saldo > otro.saldo){
+        return 1;
     }
+    else if (this.saldo < otro.saldo){
+        return -1;
+    }
+    else{
+        return Integer.compare(otro.id, this.id);
+    }
+}
 
     @Override
     public boolean equals(Object obj) {
